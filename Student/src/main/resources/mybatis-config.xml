@@ -8,8 +8,11 @@
         <package name="com.mybatis.Student.entities"/>
     </typeAliases>
     <mappers>
+
         <mapper resource="StudentMapper.xml"/>
-       </mappers>
+        <mapper resource="TeacherMapper.xml"/>
+
+    </mappers>
 </configuration>
 
 
