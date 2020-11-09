@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.Student.mappers.StudentMapper">
+
+    <resultMap id="studentResultMap" type="com.mybatis.Student.entities.Student">
+        <result property="studentId" column="studentId"/>
+
+        <result property="firstName" column="firstName"/>
+
+        <result property="lastName" column="lastName"/>
+
+        <result property="fatherName" column="fatherName"/>
+
+        <result property="city" column="city"/>
+
+        <result property="contactNumber" column="contactNumber"/>
+
+        <result property="standard" column="standard"/>
+
+        <result property="isDeleted" column="isDeleted"/>
+
+        <result property="isActive" column="isActive"/>
+
+    </resultMap>
+
+
+    <insert id="insertStudentRecord" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
+        INSERT INTO Student(firstName,lastName,fatherName,city,contactNumber,standard,isDeleted,isActive)
+        values(#{firstName},#{lastName},#{fatherName},#{city},#{contactNumber},#{standard},#{isDeleted},#{isActive})
+    </insert>
+
+    <select id="selectAllStudents" resultType="Student">
+        select * from Student
+    </select>
+
+    <select id="getStudentById" resultType="com.mybatis.Student.entities.Student" parameterType="Long">
+        select * from Student where studentId=#{studentId}
+    </select>
+
+
+    <update id="updateStudentDetails" parameterType="Student">
+        UPDATE Student SET firstName=#{firstName},lastName=#{lastName},fatherName=#{fatherName},city=#{city},
+        contactNumber=#{contactNumber},standard=#{standard},isDeleted=#{isDeleted},isActive=#{isActive}
+        Where studentId = #{studentId}
+    </update>
+
+
+    <!--    for soft Delete-->
+    <update id="deleteStudentById" parameterType="Student">
+        UPDATE Student SET isDeleted = true, isActive=false WHERE studentId = #{StudentId}
+    </update>
+
+    <!--    for hard Delete-->
+
+    <!--    <delete id="deleteStudentById" parameterType="Long">-->
+    <!--        delete from Student where studentId=#{studentId};-->
+    <!--    </delete>-->
+
+
+</mapper>
+
+
+
+
