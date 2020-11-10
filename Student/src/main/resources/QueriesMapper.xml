@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.Student.mappers.QueriesMapper">
+
+
+<!--    1.prints Teacher names and their departments:-->
+
+    <select id="getTeachersANDDepartments" resultType="TeacherDepartmentDTO">
+        SELECT   T.teacherName,D.departmentName
+        FROM Teacher T inner join Department D
+        on T.departmentId = D.departmentId;
+    </select>
+
+
+<!--    2.get student and teacher who are in same department.-->
+
+    <select id="studentTeacherSameDepartment"  resultType="StudentTeacherDepartmentDto">
+        SELECT S.firstName,S.lastName,T.teacherName,D.departmentName,D.departmentId
+        FROM Student S
+        inner join Teacher T
+        on  S.departmentId =T.departmentId
+        inner join  Department D    on  D.departmentId=S.departmentId;
+    </select>
+
+</mapper>

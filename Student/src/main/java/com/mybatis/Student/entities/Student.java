@@ -36,6 +36,16 @@ public class Student {
 
     Boolean isActive;
 
+    Long departmentId;
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
     public Long getStudentId() {
         return studentId;
     }

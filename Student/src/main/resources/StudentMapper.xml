@@ -25,12 +25,14 @@
 
         <result property="isActive" column="isActive"/>
 
+        <result property="departmentId" column="departmentId"/>
+
     </resultMap>
 
 
     <insert id="insertStudentRecord" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
-        INSERT INTO Student(firstName,lastName,fatherName,city,contactNumber,standard,isDeleted,isActive)
-        values(#{firstName},#{lastName},#{fatherName},#{city},#{contactNumber},#{standard},#{isDeleted},#{isActive})
+        INSERT INTO Student(firstName,lastName,fatherName,city,contactNumber,standard,isDeleted,isActive,departmentId)
+        values(#{firstName},#{lastName},#{fatherName},#{city},#{contactNumber},#{standard},#{isDeleted},#{isActive},#{departmentId})
     </insert>
 
     <select id="selectAllStudents" resultType="Student">

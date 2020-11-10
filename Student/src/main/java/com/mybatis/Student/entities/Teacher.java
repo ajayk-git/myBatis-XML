@@ -5,6 +5,15 @@ public class Teacher {
     String teacherName;
     String level;
     String contactNumber;
+    Long departmentId;
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
 
     public Long getTeacherId() {
         return teacherId;
