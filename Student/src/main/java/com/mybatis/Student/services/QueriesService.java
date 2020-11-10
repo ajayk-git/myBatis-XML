@@ -1,5 +1,7 @@
 package com.mybatis.Student.services;
 
+import com.mybatis.Student.entities.Student;
+import com.mybatis.Student.entities.StudentSearchDTO;
 import com.mybatis.Student.entities.StudentTeacherDepartmentDto;
 import com.mybatis.Student.entities.TeacherDepartmentDTO;
 import com.mybatis.Student.mappers.QueriesMapper;
@@ -23,5 +25,13 @@ public class QueriesService {
         List<StudentTeacherDepartmentDto>studentTeacherDepartmentDtoList= queriesMapper.studentTeacherSameDepartment();
 
         return studentTeacherDepartmentDtoList;
+
     }
+
+    public List<Student>studentSearchAPI(StudentSearchDTO studentSearchDTO){
+        List<Student> studentList=queriesMapper.studentSearchAPI(studentSearchDTO);
+        return studentList;
+    }
+
+
     }

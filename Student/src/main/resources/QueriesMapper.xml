@@ -7,23 +7,60 @@
 <mapper namespace="com.mybatis.Student.mappers.QueriesMapper">
 
 
-<!--    1.prints Teacher names and their departments:-->
+    <!--    1.prints Teacher names and their departments:-->
 
     <select id="getTeachersANDDepartments" resultType="TeacherDepartmentDTO">
-        SELECT   T.teacherName,D.departmentName
+        SELECT T.teacherName,D.departmentName
         FROM Teacher T inner join Department D
         on T.departmentId = D.departmentId;
     </select>
 
 
-<!--    2.get student and teacher who are in same department.-->
+    <!--    2.get student and teacher who are in same department.-->
 
-    <select id="studentTeacherSameDepartment"  resultType="StudentTeacherDepartmentDto">
+    <select id="studentTeacherSameDepartment" resultType="StudentTeacherDepartmentDto">
         SELECT S.firstName,S.lastName,T.teacherName,D.departmentName,D.departmentId
         FROM Student S
         inner join Teacher T
-        on  S.departmentId =T.departmentId
-        inner join  Department D    on  D.departmentId=S.departmentId;
+        on S.departmentId =T.departmentId
+        inner join Department D on D.departmentId=S.departmentId;
+    </select>
+
+    <select id="studentSearchAPI" parameterType="StudentSearchDTO" resultType="Student">
+
+
+        select *
+        from Student
+        <where>
+            <if test="studentFirstName != null">
+                firstName like #{studentFirstName}
+            </if>
+
+            <if test="studentLastName != null">
+                AND lastName like #{studentLastName}
+            </if>
+
+            <if test="studentCity != null">
+                AND city like #{studentCity}
+            </if>
+
+            <if test="departmentId != null">
+                AND departmentId like #{departmentId}
+            </if>
+        </where>
     </select>
 
 </mapper>
+
+
+        <!--        CREATE PROCEDURE studentSearchProcedure(-->
+        <!--        IN StudentFirstName VARCHAR(25),-->
+        <!--        IN lastName VARCHAR(25)-->
+        <!--        )-->
+        <!--        BEGIN-->
+
+        <!--              SELECT *-->
+        <!--              FROM Student-->
+        <!--              WHERE ;-->
+
+        <!--        END //-->
