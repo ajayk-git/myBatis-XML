@@ -1,11 +1,10 @@
 package com.mybatis.Student.controllers;
 
 import com.mybatis.Student.entities.Student;
-import com.mybatis.Student.entities.StudentSearchDTO;
-import com.mybatis.Student.entities.StudentTeacherDepartmentDto;
-import com.mybatis.Student.entities.TeacherDepartmentDTO;
+import com.mybatis.Student.dtos.StudentSearchDTO;
+import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
+import com.mybatis.Student.dtos.TeacherDepartmentDTO;
 import com.mybatis.Student.services.QueriesService;
-import jdk.nashorn.internal.runtime.linker.LinkerCallSite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +35,7 @@ public class QueriesController {
 //        return queriesService.
 //    }
 
-    @GetMapping("student")
+    @GetMapping("students")
     List<Student> studentSearchAPI(@RequestBody StudentSearchDTO studentSearchDTO){
         List<Student> studentList=queriesService.studentSearchAPI(studentSearchDTO);
         return studentList;

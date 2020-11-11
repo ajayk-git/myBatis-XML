@@ -1,9 +1,10 @@
 package com.mybatis.Student.services;
 
 import com.mybatis.Student.entities.Student;
-import com.mybatis.Student.entities.StudentSearchDTO;
-import com.mybatis.Student.entities.StudentTeacherDepartmentDto;
-import com.mybatis.Student.entities.TeacherDepartmentDTO;
+import com.mybatis.Student.dtos.StudentSearchDTO;
+import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
+import com.mybatis.Student.dtos.TeacherDepartmentDTO;
+import com.mybatis.Student.exceptions.ResourceNotFound;
 import com.mybatis.Student.mappers.QueriesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class QueriesService {
 
     public List<Student>studentSearchAPI(StudentSearchDTO studentSearchDTO){
         List<Student> studentList=queriesMapper.studentSearchAPI(studentSearchDTO);
+
+        if (studentList.isEmpty()){
+            throw  new ResourceNotFound("No record match for input");
+        }
         return studentList;
     }
 

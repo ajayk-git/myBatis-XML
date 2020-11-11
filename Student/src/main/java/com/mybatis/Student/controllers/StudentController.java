@@ -3,6 +3,7 @@ package com.mybatis.Student.controllers;
 import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.InterruptedNamingException;
@@ -29,15 +30,15 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    void addNewStudentRecord( @Valid @RequestBody Student student){
-        studentService.addNewStudentRecord(student);
+    ResponseEntity addNewStudentRecord(@Valid @RequestBody Student student){
+        return studentService.addNewStudentRecord(student);
     }
 
     @PatchMapping("/update")
     Student updateStudentDetails(@RequestBody Student student  ){
       return studentService.updateStudentDetails(student);
     }
-    @DeleteMapping("/remove/{studentId}")
+    @DeleteMapping("/{studentId}")
     List<Student>deleteStudentRecord(@PathVariable(name = "studentId") Long studentId){
         return studentService.deleteStudentRecord(studentId);
     }

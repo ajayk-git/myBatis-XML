@@ -3,6 +3,8 @@ package com.mybatis.Student.services;
 import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.mappers.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +20,10 @@ public class StudentService {
         return studentList;
     }
 
-    public void addNewStudentRecord(Student student) {
-
+    public ResponseEntity addNewStudentRecord(Student student) {
         studentMapper.insertStudentRecord(student);
+        return new ResponseEntity("Student Added Successfully",HttpStatus.CREATED);
+
     }
 
     public List<Student> deleteStudentRecord(Long studentId) {

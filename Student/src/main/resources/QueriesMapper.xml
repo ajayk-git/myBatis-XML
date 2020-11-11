@@ -26,8 +26,8 @@
         inner join Department D on D.departmentId=S.departmentId;
     </select>
 
-    <select id="studentSearchAPI" parameterType="StudentSearchDTO" resultType="Student">
 
+    <select id="studentSearchAPI" parameterType="StudentSearchDTO" resultType="Student">
 
         select *
         from Student

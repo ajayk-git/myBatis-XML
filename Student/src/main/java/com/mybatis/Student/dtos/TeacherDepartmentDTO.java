@@ -1,4 +1,4 @@
-package com.mybatis.Student.entities;
+package com.mybatis.Student.dtos;
 
 public class TeacherDepartmentDTO {
 

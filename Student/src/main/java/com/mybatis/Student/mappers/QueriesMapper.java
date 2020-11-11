@@ -1,9 +1,9 @@
 package com.mybatis.Student.mappers;
 
 import com.mybatis.Student.entities.Student;
-import com.mybatis.Student.entities.StudentSearchDTO;
-import com.mybatis.Student.entities.StudentTeacherDepartmentDto;
-import com.mybatis.Student.entities.TeacherDepartmentDTO;
+import com.mybatis.Student.dtos.StudentSearchDTO;
+import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
+import com.mybatis.Student.dtos.TeacherDepartmentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

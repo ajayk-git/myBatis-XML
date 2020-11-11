@@ -6,6 +6,7 @@
 <configuration>
     <typeAliases>
         <package name="com.mybatis.Student.entities"/>
+        <package name="com.mybatis.Student.dtos"/>
     </typeAliases>
     <mappers>
 
