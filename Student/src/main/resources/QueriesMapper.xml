@@ -50,6 +50,16 @@
         </where>
     </select>
 
+    <select id="multipleStudentSearchAPI" resultType="Student">
+
+        select * from Student
+        where studentId
+        in
+        <foreach collection="studentIds" item="studentIds" open="(" separator="," close=")">
+            #{studentIds}
+        </foreach>
+    </select>
+
 </mapper>
 
 

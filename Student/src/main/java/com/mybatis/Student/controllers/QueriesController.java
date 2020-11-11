@@ -1,5 +1,6 @@
 package com.mybatis.Student.controllers;
 
+import com.mybatis.Student.dtos.MultipleStudentSearchByIDDto;
 import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.dtos.StudentSearchDTO;
 import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
@@ -38,6 +39,13 @@ public class QueriesController {
     @GetMapping("students")
     List<Student> studentSearchAPI(@RequestBody StudentSearchDTO studentSearchDTO){
         List<Student> studentList=queriesService.studentSearchAPI(studentSearchDTO);
+        return studentList;
+    }
+
+    @GetMapping("student/ids")
+    List<Student> multipleStudentSearchAPI( @RequestBody  MultipleStudentSearchByIDDto multipleStudentSearchByIDDto){
+
+        List<Student> studentList=queriesService.multipleStudentSearchAPI(multipleStudentSearchByIDDto);
         return studentList;
     }
 }

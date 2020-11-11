@@ -1,5 +1,6 @@
 package com.mybatis.Student.services;
 
+import com.mybatis.Student.dtos.MultipleStudentSearchByIDDto;
 import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.dtos.StudentSearchDTO;
 import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
@@ -19,24 +20,37 @@ public class QueriesService {
 
     public List<TeacherDepartmentDTO> getTeacherAndDepartment() {
         List<TeacherDepartmentDTO> teacherDepartmentDTOList = queriesMapper.getTeachersANDDepartments();
+        if (teacherDepartmentDTOList.isEmpty())
+            throw new ResourceNotFound("No resource found");
+
         return teacherDepartmentDTOList;
     }
 
-    public List<StudentTeacherDepartmentDto> studentTeacherSameDepartment(){
-        List<StudentTeacherDepartmentDto>studentTeacherDepartmentDtoList= queriesMapper.studentTeacherSameDepartment();
+    public List<StudentTeacherDepartmentDto> studentTeacherSameDepartment() {
+        List<StudentTeacherDepartmentDto> studentTeacherDepartmentDtoList = queriesMapper.studentTeacherSameDepartment();
+        if (studentTeacherDepartmentDtoList.isEmpty())
+            throw new ResourceNotFound("No resource found");
 
         return studentTeacherDepartmentDtoList;
 
     }
 
-    public List<Student>studentSearchAPI(StudentSearchDTO studentSearchDTO){
-        List<Student> studentList=queriesMapper.studentSearchAPI(studentSearchDTO);
+    public List<Student> studentSearchAPI(StudentSearchDTO studentSearchDTO) {
+        List<Student> studentList = queriesMapper.studentSearchAPI(studentSearchDTO);
 
-        if (studentList.isEmpty()){
-            throw  new ResourceNotFound("No record match for input");
+        if (studentList.isEmpty()) {
+            throw new ResourceNotFound("No record match for input");
         }
         return studentList;
     }
 
 
+    public List<Student> multipleStudentSearchAPI(MultipleStudentSearchByIDDto multipleStudentSearchByIDDto) {
+        List<Student> studentList = queriesMapper.multipleStudentSearchAPI(multipleStudentSearchByIDDto);
+
+        if (studentList.isEmpty()) {
+            throw new ResourceNotFound("No record match for input");
+        }
+        return studentList;
     }
+}

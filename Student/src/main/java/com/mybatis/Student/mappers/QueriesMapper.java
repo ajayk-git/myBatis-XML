@@ -1,5 +1,6 @@
 package com.mybatis.Student.mappers;
 
+import com.mybatis.Student.dtos.MultipleStudentSearchByIDDto;
 import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.dtos.StudentSearchDTO;
 import com.mybatis.Student.dtos.StudentTeacherDepartmentDto;
@@ -16,4 +17,5 @@ public interface QueriesMapper {
     List<TeacherDepartmentDTO> getTeachersANDDepartments();
     List<StudentTeacherDepartmentDto>studentTeacherSameDepartment();
     List<Student>studentSearchAPI(StudentSearchDTO studentSearchDTO);
+    List<Student>multipleStudentSearchAPI(MultipleStudentSearchByIDDto multipleStudentSearchByIDDto);
 }
