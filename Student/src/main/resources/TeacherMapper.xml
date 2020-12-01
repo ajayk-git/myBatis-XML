@@ -10,4 +10,30 @@
         select * from Teacher;
     </select>
 
+
+    <insert id="insertTeacherRecord" parameterType="Teacher" useGeneratedKeys="true" keyProperty="teacherId">
+        INSERT INTO Teacher(teacherName,level,departmentId,contactNumber)
+        values(#{teacherName},#{level},#{departmentId},#{contactNumber})
+    </insert>
+
+
+    <select id="getTeacherById" resultType="com.mybatis.Student.entities.Teacher" parameterType="Long">
+        select * from Teacher where teacherId=#{teacherId}
+    </select>
+
+
+        <delete id="deleteTeacherById" parameterType="Long">
+            delete from Teacher where teacherId=#{teacherId};
+        </delete>
+
+
+
+    <update id="updateTeacherDetails" parameterType="Teacher">
+        UPDATE Teacher SET teacherName=#{teacherName},level=#{level},departmentId=#{departmentId},
+        contactNumber=#{contactNumber}
+        Where teacherId = #{teacherId};
+    </update>
+
+
+
 </mapper>

@@ -23,7 +23,6 @@ public class StudentService {
     public ResponseEntity addNewStudentRecord(Student student) {
         studentMapper.insertStudentRecord(student);
         return new ResponseEntity("Student Added Successfully",HttpStatus.CREATED);
-
     }
 
     public List<Student> deleteStudentRecord(Long studentId) {
