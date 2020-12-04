@@ -13,6 +13,9 @@
         <mapper resource="StudentMapper.xml"/>
         <mapper resource="TeacherMapper.xml"/>
         <mapper resource="QueriesMapper.xml"/>
+        <mapper resource="UserMapper.xml"/>
+
+
 
     </mappers>
 </configuration>

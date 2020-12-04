@@ -22,8 +22,8 @@ dependencies {
 	}
 
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
-
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.6.RELEASE'
+//	compile "org.springframework.boot:spring-boot-starter-security"
 
 }
 
