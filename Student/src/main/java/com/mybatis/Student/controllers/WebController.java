@@ -11,7 +11,7 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping(value = "/login1")
+    @RequestMapping(value = "/login")
     public String login(){
         return "login";
     }
