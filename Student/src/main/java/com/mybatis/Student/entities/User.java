@@ -1,5 +1,9 @@
 package com.mybatis.Student.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Set;
+
 public class User {
 
     private Integer id;

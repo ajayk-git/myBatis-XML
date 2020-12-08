@@ -1,26 +1,69 @@
 package com.mybatis.Student.entities;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class AppUser {
+@Slf4j
+public class AppUser implements UserDetails {
 
     private String username;
     private String password;
-  private    String role;
+    private Set<GrantedAuthority> role;
 
-    public AppUser(String username, String password,String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+
+    public AppUser(User user) {
+
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+
+        this.role = Arrays.stream(user.getRole().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet());
+
     }
 
+
     public String getUsername() {
-        return username;
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {
@@ -31,11 +74,11 @@ public class AppUser {
         this.password = password;
     }
 
-    public String getRole() {
+    public Set<GrantedAuthority> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Set<GrantedAuthority> role) {
         this.role = role;
     }
 }
