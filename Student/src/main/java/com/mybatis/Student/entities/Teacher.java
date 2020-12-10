@@ -1,7 +1,9 @@
 package com.mybatis.Student.entities;
 
 public class Teacher {
+
     Long teacherId;
+
     String teacherName;
     String level;
     String contactNumber;

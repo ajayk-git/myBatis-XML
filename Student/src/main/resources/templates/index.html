@@ -13,11 +13,11 @@
             type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"
             type="text/javascript"></script>
-    <title>Backbone  App</title>
+    <title>Backbone App</title>
 </head>
 <body>
 <div class="container">
-    <h1>Teachers Record  App</h1>
+    <h1>Teachers Record App</h1>
 
     <table class="table">
         <thead>
@@ -27,13 +27,16 @@
             <th>departmentId</th>
             <th>contactNumber</th>
         </tr>
-        <tr>
-            <td><input class="form-control teacherName-input"></td>
-            <td><input class="form-control level-input"></td>
-            <td><input class="form-control departmentId-input"></td>
-            <td><input class="form-control contactNumber-input"></td>
-            <td><button class="btn btn-primary add-teacher">Add</button></td>
-        </tr>
+
+            <tr>
+                <td><input class="form-control teacherName-input"  required placeholder="TeacherName" ></td>
+                <td><input class="form-control level-input" placeholder="Level" required></td>
+                <td><input class="form-control departmentId-input" placeholder="DepartmentId" required></td>
+                <td><input class="form-control contactNumber-input" placeholder="ContactNumber" required></td>
+                <td>
+                    <button class="btn btn-primary add-teacher">Add</button>
+                </td>
+            </tr>
         </thead>
         <tbody class="teachers-list"></tbody>
     </table>
@@ -45,15 +48,17 @@
     <td><span class="departmentId"><%= departmentId %></span></td>
     <td><span class="contactNumber"><%= contactNumber %></span></td>
 
-    <td><button class="btn btn-warning edit-teacher">Edit</button>
+    <td>
+        <button class="btn btn-warning edit-teacher">Edit</button>
         <button class="btn btn-danger delete-teacher">Delete</button>
         <button class="btn btn-success update-teacher" style="display:none">Update</button>
-        <button class="btn btn-danger cancel" style="display:none">Cancel</button></td>
+        <button class="btn btn-danger cancel" style="display:none">Cancel</button>
+    </td>
 
 </script>
 
 
-<script  type="text/javascript">
+<script type="text/javascript">
 
 		Backbone.Model.prototype.idAttribute = 'teacherId';
 
@@ -61,10 +66,10 @@
 
 var Teacher = Backbone.Model.extend({
 	defaults: {
-		teacherName: '',
-		level: '',
-		departmentId: '',
-		contactNumber:''
+		teacherName: 'teacherName',
+		level: 'level',
+		departmentId: '1',
+		contactNumber:'7053872246'
 	}
 });
 
@@ -117,6 +122,7 @@ var TeacherView = Backbone.View.extend({
 	},
 
 	update: function() {
+
 		this.model.set('teacherName', $('.teacherName-update').val());
 		this.model.set('level', $('.level-update').val());
 		this.model.set('departmentId', $('.departmentId-update').val());
@@ -190,6 +196,7 @@ var TeachersView = Backbone.View.extend({
 	}
 });
 
+
 var teachersView = new TeachersView();
 
 $(document).ready(function() {
@@ -199,7 +206,6 @@ $(document).ready(function() {
 			level: $('.level-input').val(),
 			departmentId: $('.departmentId-input').val(),
 			contactNumber: $('.contactNumber-input').val()
-
 		});
 
 		$('.teacherName-input').val('');
@@ -218,6 +224,7 @@ $(document).ready(function() {
 		});
 	});
 })
-	</script>
+
+</script>
 </body>
 </html>
