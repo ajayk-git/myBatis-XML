@@ -23,4 +23,12 @@
         select * from User;
     </select>
 
+
+
+    <insert id="insertUserRecord" parameterType="User" >
+        INSERT INTO User(username,password,role)
+        values(#{username},#{password},#{role})
+    </insert>
+
+
 </mapper>

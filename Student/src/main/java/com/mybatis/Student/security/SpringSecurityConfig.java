@@ -34,7 +34,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         // configuration code
-
+        authenticationManagerBuilder
+                .inMemoryAuthentication()
+                .withUser("user").password("pass").roles("USER");
 
     }
     @Override
@@ -43,6 +45,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
+                .antMatchers("/users/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .rememberMe()

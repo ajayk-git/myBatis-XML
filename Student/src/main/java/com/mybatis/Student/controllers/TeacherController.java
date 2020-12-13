@@ -40,7 +40,7 @@ public class TeacherController {
     }
 
     @PostMapping("/")
-    ResponseEntity addNewStudentRecord(@Valid @RequestBody Teacher teacher){
+    ResponseEntity addNewTeacherRecord(@Valid @RequestBody Teacher teacher){
 
         return teacherService.addNewTeacherRecord(teacher);
     }
