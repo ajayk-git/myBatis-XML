@@ -8,7 +8,7 @@
 
 
     <resultMap id="userResultMap" type="com.mybatis.Student.entities.User">
-        <result property="id" column="userId"/>
+        <result property="userId" column="userId"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="role" column="role"/>
