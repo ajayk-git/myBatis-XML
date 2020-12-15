@@ -70,9 +70,12 @@
         </tr>
 
         <tr>
-            <td><input class="form-control userName-input"  placeholder="UserName"  ></td>
-            <td><input class="form-control password-input" placeholder="Password" ></td>
-            <td><input class="form-control role-input" placeholder="User/Admin" ></td>
+            <td><input class="form-control userName-input"  placeholder="UserName"/></td>
+            <td><input class="form-control password-input" placeholder="Password"/></td>
+            <td><select id="roles-input" name="class-name" class="form-control" >
+                    <option value="ROLE_ADMIN">ADMIN</option>
+                    <option value="ROLE_USER">USER</option>
+                </select></td>
             <td>
                 <button class="btn btn-primary add-user">Add</button>
             </td>
@@ -108,7 +111,7 @@
 <script type="text/javascript">
 
 		Backbone.Model.prototype.idAttribute = 'teacherId';
-		Backbone.Model.prototype.idAttribute = 'userId';
+<!--		Backbone.Model.prototype.idAttribute = 'userId';-->
 
  var Router = Backbone.Router.extend({
              routes: {
@@ -119,16 +122,16 @@
 
              //functions
 
-<!--             addNewUser: function () {-->
-<!--             console.log("add new User View")-->
-<!--             var userView=new UsersView();-->
+             addNewUser: function () {
+             console.log("add new User View")
+             var userView=new UsersView();
 
-<!--             },-->
+             },
 
-<!--             AdminTeacherPageRender:function(){-->
-<!--             console.log("back to admin-teacher page");-->
-<!--             var teachersView= new TeachersView();-->
-<!--             },-->
+             AdminTeacherPageRender:function(){
+             console.log("back to admin-teacher page");
+             var teachersView= new TeachersView();
+             },
 
           });
 
@@ -158,6 +161,7 @@ var Teachers = Backbone.Collection.extend({
 
 var teachers = new Teachers();
 
+// Backbone View for one teacher
 // Backbone View for one teacher
 
 var TeacherView = Backbone.View.extend({
@@ -374,18 +378,16 @@ $(document).ready(function() {
 		});
 	});
 
-
-
 	$('.add-user').on('click', function() {
 		var user = new User({
 			username: $('.userName-input').val(),
 			password: $('.password-input').val(),
-			role: $('.selectRole').val(),
+			role: $('#roles-input').val(),
 		});
 
 		$('.userName-input').val('');
 		$('.password-input').val('');
-		$('.role-input').val('');
+		$('#roles-input').val('');
 
 		users.add(user);
 		user.save(null, {

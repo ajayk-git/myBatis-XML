@@ -27,6 +27,9 @@ public class TeacherService {
     }
 
     public List<Teacher> deleteTeacherRecord(Long teacherId) {
+
+
+        System.out.println("inside delete teacher method");
         teacherMapper.deleteTeacherById(teacherId);
         List<Teacher> teacherList = teacherMapper.getAllTeachers();
         return teacherList;
@@ -34,7 +37,7 @@ public class TeacherService {
 
     public Teacher updateTeacherDetails(Long teacherId, Teacher teacher) {
         Teacher teacherToUpdate = teacherMapper.getTeacherById(teacherId);
-
+        System.out.println("inside Update teacher method");
         teacherToUpdate.setTeacherId(teacherId);
         teacherToUpdate.setTeacherName(teacher.getTeacherName());
         teacherToUpdate.setLevel(teacher.getLevel());

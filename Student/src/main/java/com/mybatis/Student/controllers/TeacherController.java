@@ -25,11 +25,15 @@ public class TeacherController {
 
     @DeleteMapping("/{teacherId}")
     List<Teacher> deleteTeacherRecord(@PathVariable(name = "teacherId") Long teacherId) {
+        System.out.println("inside delete teacher method");
+
         return teacherService.deleteTeacherRecord(teacherId);
     }
 
     @PutMapping("/{teacherId}")
     Teacher updateTeacherDetails(@PathVariable(name = "teacherId") Long teacherId,@RequestBody Teacher teacher) {
+        System.out.println("inside update teacher method");
+
         return teacherService.updateTeacherDetails(teacherId ,teacher);
     }
 

@@ -17,8 +17,8 @@ public class WebController {
     @RequestMapping(value = "/")
     public String index(Principal principal) {
         User user = userMapper.findByUserName(principal.getName());
-
-        if (user.getRole().equalsIgnoreCase("Admin"))
+//        System.out.println(user.getRole());
+        if (user.getRole().equalsIgnoreCase("ROLE_ADMIN"))
             return "index";
         else return "indexUser";
     }
