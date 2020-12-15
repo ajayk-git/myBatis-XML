@@ -1,6 +1,5 @@
 package com.mybatis.Student.mappers;
 
-import com.mybatis.Student.entities.Student;
 import com.mybatis.Student.entities.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 

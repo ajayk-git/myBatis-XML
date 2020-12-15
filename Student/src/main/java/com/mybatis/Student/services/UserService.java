@@ -29,8 +29,6 @@ public class UserService implements UserDetailsService{
     PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
 
-
-
     public List<User> getAllUsers() {
 
         List<User> userList=userMapper.getAllUsers();
@@ -44,7 +42,7 @@ public class UserService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user= userMapper.findByUserName(username);
 
-//        log.info("inside loadUserByUsername method");
+        System.out.println("inside loadUserByUsername method");
         if (username!=null){
             return new AppUser(user);
         }

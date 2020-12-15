@@ -15,7 +15,6 @@ import java.util.List;
 
 public class StudentController {
 
-
    @Autowired
    StudentService studentService;
 
