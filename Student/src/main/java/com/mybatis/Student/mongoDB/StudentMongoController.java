@@ -23,11 +23,11 @@ public class StudentMongoController {
     List<Student> getAllStudentsFromMongo(){
         return studentMongoService.getAllStudentsFromMongo();
     }
-//    @GetMapping("/avg")
-//    ResponseEntity getStudentAvgResult(@RequestParam(name = "subject") String subject,
-//                                    @RequestParam(name = "standard") String standard){
-//
-//        return studentMongoService.getStudentAvgResult(subject,standard);
-//
-//    }
+    @GetMapping("/avg")
+    ResponseEntity getStudentAvgResult(@RequestParam(name = "subject") String subject,
+                                    @RequestParam(name = "standard") String standard){
+
+        return studentMongoService.getStudentAvgResult(subject,standard);
+
+    }
 }

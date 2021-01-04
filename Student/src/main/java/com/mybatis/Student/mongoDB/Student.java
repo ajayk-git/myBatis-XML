@@ -2,12 +2,14 @@ package com.mybatis.Student.mongoDB;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+
 @Document(collection = "Students")
 @Getter
 @Setter
@@ -16,9 +18,10 @@ public class Student {
     @Autowired
     Subjects subjectObject;
     @Id
- public    String studentId;
+    public String studentId;
     public String studentName;
-    public List<Subjects>subjects;
+    public List<Subjects> subjects;
+
 
 
     public String getStudentId() {

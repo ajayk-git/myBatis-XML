@@ -3,7 +3,7 @@ package com.mybatis.Student.mongoDB;
 public class StudentResultDto {
         String standard;
         String subject;
-        Float averageMarks;
+        Double averageMarks;
 
     public String getStandard() {
         return standard;
@@ -21,11 +21,11 @@ public class StudentResultDto {
         this.subject = subject;
     }
 
-    public Float getAverageMarks() {
+    public Double getAverageMarks() {
         return averageMarks;
     }
 
-    public void setAverageMarks(Float averageMarks) {
+    public void setAverageMarks(Double averageMarks) {
         this.averageMarks = averageMarks;
     }
 }

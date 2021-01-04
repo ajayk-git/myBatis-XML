@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Subjects {
- public    String paperName;
-    public Float marks;
+    public String paperName;
+    public Double marks;
 }
