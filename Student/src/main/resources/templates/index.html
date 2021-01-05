@@ -28,7 +28,10 @@
   margin: 4px 2px;
   cursor: pointer;
 }
-
+.button-wrapper{
+display:flex;
+justify-content:space-between;
+}
 
 
 
@@ -38,9 +41,11 @@
 <body>
 <div class="container">
     <h1>Teachers Record App</h1>
+            <div class= "button-wrapper">
+                <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+                <h3 align="right" ><a href="#/result-Analysis" class="btn btn-success">Result Analysis</a></h3>
+            </div>
 
-            <td><h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3></td>
-            <td><h3 align="right" ><a href="#/result-Analysis" class="btn btn-success">ResultAnalysis</a></h3></td>
 
 
     <table class="table">
@@ -107,8 +112,10 @@
 <script type="text/template" id="Result">
 
     <h1>Result Analysis</h1>
-    <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
-    <h3 align="left"><a href="http://localhost:8080/" class="btn btn-success">Back</a></h3>
+    <div class= "button-wrapper">
+        <h3 align="left"><a href="http://localhost:8080/" class="btn btn-success">Back</a></h3>
+        <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+    </div>
 
     <table class="table">
         <tr>
@@ -133,7 +140,10 @@
                 <button class="btn btn-primary get-avgResult">Avg Marks</button>
             </td>
             <td>
-                <input type="text" value="<%=averageMarks.averageMarks%>">
+                <p><%= averageMarks %></p>
+<!--                <button class="btn btn-primary get-avgResult"><%= averageMarks.averageMarks %></button>-->
+
+                <!--                <input type="text" value="<%=averageMarks.averageMarks%>">-->
             </td>
         </tr>
     </table>
@@ -203,6 +213,7 @@
 				console.log("result Created")
 				console.log(response.toJSON());
 				averageMarks=response.toJSON();
+				console.log(averageMarks);
                 alert(response.toJSON().averageMarks);
 			},
 			error: function(err) {
