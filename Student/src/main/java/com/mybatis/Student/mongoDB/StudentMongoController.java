@@ -5,10 +5,7 @@ import com.mybatis.Student.mongoDB.StudentMongoService;
 import com.mybatis.Student.mongoDB.StudentResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,11 +20,10 @@ public class StudentMongoController {
     List<Student> getAllStudentsFromMongo(){
         return studentMongoService.getAllStudentsFromMongo();
     }
-    @GetMapping("/avg")
-    ResponseEntity getStudentAvgResult(@RequestParam(name = "subject") String subject,
-                                    @RequestParam(name = "standard") String standard){
+    @PostMapping("/")
+    StudentResultDto getStudentAvgResult(@RequestBody AverageMarksDTO averageMarksDTO){
 
-        return studentMongoService.getStudentAvgResult(subject,standard);
+        return studentMongoService.getStudentAvgResult(averageMarksDTO.subject,averageMarksDTO.standard);
 
     }
 }

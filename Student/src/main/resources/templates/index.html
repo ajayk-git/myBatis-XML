@@ -29,16 +29,19 @@
   cursor: pointer;
 }
 
-.button1 {background-color: #008CBA;} /* Blue */
-.button2 {background-color: #FF0000;} /* Red */
 
-</style>
+
+
+    </style>
 
 </head>
 <body>
 <div class="container">
     <h1>Teachers Record App</h1>
-    <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+
+            <td><h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3></td>
+            <td><h3 align="right" ><a href="#/result-Analysis" class="btn btn-success">ResultAnalysis</a></h3></td>
+
 
     <table class="table">
         <thead>
@@ -48,15 +51,15 @@
             <th>departmentId</th>
             <th>contactNumber</th>
         </tr>
-            <tr>
-                <td><input class="form-control teacherName-input"  placeholder="TeacherName" ></td>
-                <td><input class="form-control level-input" placeholder="Level" required></td>
-                <td><input class="form-control departmentId-input" placeholder="DepartmentId" ></td>
-                <td><input class="form-control contactNumber-input" placeholder="ContactNumber" ></td>
-                <td>
-                    <button class="btn btn-primary add-teacher">Add</button>
-                </td>
-            </tr>
+        <tr>
+            <td><input class="form-control teacherName-input" placeholder="TeacherName"></td>
+            <td><input class="form-control level-input" placeholder="Level" required></td>
+            <td><input class="form-control departmentId-input" placeholder="DepartmentId"></td>
+            <td><input class="form-control contactNumber-input" placeholder="ContactNumber"></td>
+            <td>
+                <button class="btn btn-primary add-teacher">Add</button>
+            </td>
+        </tr>
         </thead>
         <tbody class="teachers-list"></tbody>
     </table>
@@ -70,12 +73,12 @@
         </tr>
 
         <tr>
-            <td><input class="form-control userName-input"  placeholder="UserName"/></td>
+            <td><input class="form-control userName-input" placeholder="UserName"/></td>
             <td><input class="form-control password-input" placeholder="Password"/></td>
-            <td><select id="roles-input" name="class-name" class="form-control" >
-                    <option value="ROLE_ADMIN">ADMIN</option>
-                    <option value="ROLE_USER">USER</option>
-                </select></td>
+            <td><select id="roles-input" name="class-name" class="form-control">
+                <option value="ROLE_ADMIN">ADMIN</option>
+                <option value="ROLE_USER">USER</option>
+            </select></td>
             <td>
                 <button class="btn btn-primary add-user">Add</button>
             </td>
@@ -101,6 +104,42 @@
 </script>
 
 
+<script type="text/template" id="Result">
+
+    <h1>Result Analysis</h1>
+    <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+    <h3 align="left"><a href="http://localhost:8080/" class="btn btn-success">Back</a></h3>
+
+    <table class="table">
+        <tr>
+            <th>Standard</th>
+            <th>Subject</th>
+            <th>Operation</th>
+            <th>Result</th>
+        </tr>
+
+        <tr>
+            <td><select id="standard-input" name="standard-name" class="form-control">
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select></td>
+
+            <td><select id="subject-input" name="subject-name" class="form-control">
+                <option value="English">English</option>
+                <option value="Maths">Maths</option>
+            </select></td>
+            <td>
+                <button class="btn btn-primary get-avgResult">Avg Marks</button>
+            </td>
+            <td>
+                <input type="text" value="<%=averageMarks.averageMarks%>">
+            </td>
+        </tr>
+    </table>
+</script>
+
+
 <script type="text/template" class="users-list-template">
     <td><span class="userName"><%= username %></span></td>
     <td><span class="password">*************</span></td>
@@ -113,30 +152,72 @@
 		Backbone.Model.prototype.idAttribute = 'teacherId';
 <!--		Backbone.Model.prototype.idAttribute = 'userId';-->
 
- var Router = Backbone.Router.extend({
-             routes: {
-                "add-user" : "addNewUser",
-                "back-button":"AdminTeacherPageRender",
-                "logout":"logoutRender"
-             },
+    var ProjectRouter = Backbone.Router.extend({
+   routes:{
+    "result-Analysis":"getResultAnalysis",
+   },
 
-             //functions
+   getResultAnalysis:function(){
+    var resultViewObj = new ResultView();
+   }
+   });
 
-             addNewUser: function () {
-             console.log("add new User View")
-             var userView=new UsersView();
+   var projRouterObj = new ProjectRouter();
 
-             },
+   Backbone.history.start();
 
-             AdminTeacherPageRender:function(){
-             console.log("back to admin-teacher page");
-             var teachersView= new TeachersView();
-             },
+    var averageMarks="";
+   var ResultModel=Backbone.Model.extend({
 
-          });
+    defaults: {
+		standard: '7',
+		subject: 'Maths'
+		},
+		url: 'http://localhost:8080/studentResult/'
 
-          var router = new Router();
-         Backbone.history.start({ pushState: true });
+   });
+
+
+   // Result View
+    var ResultView = Backbone.View.extend({
+    el:".container",
+    model:new ResultModel(),
+    template:_.template($("#Result").html()),
+    initialize:function(){
+     this.render();
+    },
+    events:{
+    		'click .get-avgResult': 'getAvgResult'
+    },
+
+
+    getAvgResult:function(){
+    	this.model.set({
+			subject: $('#subject-input').val(),
+			standard: $('#standard-input').val(),
+		});
+
+       this.model.save(null, {
+
+			success: function(response) {
+				console.log("result Created")
+				console.log(response.toJSON());
+				averageMarks=response.toJSON();
+                alert(response.toJSON().averageMarks);
+			},
+			error: function(err) {
+				console.log('Failed to get result!');
+			}
+		});
+
+
+},
+    render:function(){
+    console.log("Inside view  for result");
+    this.$el.html(this.template(averageMarks));
+    }
+   });
+
 
 // Backbone Model
 
@@ -161,7 +242,6 @@ var Teachers = Backbone.Collection.extend({
 
 var teachers = new Teachers();
 
-// Backbone View for one teacher
 // Backbone View for one teacher
 
 var TeacherView = Backbone.View.extend({
@@ -400,6 +480,8 @@ $(document).ready(function() {
 		});
 	});
 })
+
+
 </script>
 
 
