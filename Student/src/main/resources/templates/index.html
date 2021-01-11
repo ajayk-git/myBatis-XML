@@ -35,17 +35,18 @@ justify-content:space-between;
 
 
 
+
+
     </style>
 
 </head>
 <body>
 <div class="container">
     <h1>Teachers Record App</h1>
-            <div class= "button-wrapper">
-                <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
-                <h3 align="right" ><a href="#/result-Analysis" class="btn btn-success">Result Analysis</a></h3>
-            </div>
-
+    <div class="button-wrapper">
+        <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+        <h3 align="right"><a href="#/result-Analysis" class="btn btn-success">Result Analysis</a></h3>
+    </div>
 
 
     <table class="table">
@@ -112,10 +113,8 @@ justify-content:space-between;
 <script type="text/template" id="Result">
 
     <h1>Result Analysis</h1>
-    <div class= "button-wrapper">
-        <h3 align="left"><a href="http://localhost:8080/" class="btn btn-success">Back</a></h3>
-        <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
-    </div>
+    <h3 align="right"><a href="/logout" class="btn btn-danger">Logout</a></h3>
+    <h3 align="left"><a href="http://localhost:8080/" class="btn btn-success">Back</a></h3>
 
     <table class="table">
         <tr>
@@ -141,7 +140,7 @@ justify-content:space-between;
             </td>
             <td>
                 <p><%= averageMarks %></p>
-<!--                <button class="btn btn-primary get-avgResult"><%= averageMarks.averageMarks %></button>-->
+                <!--                <button class="btn btn-primary get-avgResult"><%= averageMarks.averageMarks %></button>-->
 
                 <!--                <input type="text" value="<%=averageMarks.averageMarks%>">-->
             </td>
@@ -173,7 +172,6 @@ justify-content:space-between;
    });
 
    var projRouterObj = new ProjectRouter();
-
    Backbone.history.start();
 
     var averageMarks="";
@@ -491,6 +489,8 @@ $(document).ready(function() {
 		});
 	});
 })
+
+
 
 
 </script>
