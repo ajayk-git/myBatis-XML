@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql-standalone:
+    image: mysql:latest
+    networks:
+      - another-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=igdefault
+      - MYSQL_DATABASE=StudentMyBatis
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test@1234
+    ports:
+      - 3607:3606
+
+  springboot-docker-container:
+    image: springboot-docker-container:3.0
+    networks:
+      - another-network
+    ports:
+      - 8080:8080
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-standalone
+    links:
+      - mysql-standalone
+
+networks:
+  another-network:
