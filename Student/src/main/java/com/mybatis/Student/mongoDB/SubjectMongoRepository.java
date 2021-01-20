@@ -10,7 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SubjectMongoRepository extends MongoRepository<Subjects,String> {
 
-    MongoClient mongoClient=new MongoClient("localhost",27017);
-    MongoDatabase mongoDatabase=mongoClient.getDatabase("StudentRecords");
-    MongoCollection<Document> collection = mongoDatabase.getCollection("Subjects");
 }

@@ -13,8 +13,18 @@ services:
     ports:
       - 3607:3606
 
+
+  mongodb-standalone:
+    image: mongo:latest
+    networks:
+      - another-network
+    container_name: "mongodb-standalone"
+    ports:
+      - 27017:27017
+
+
   springboot-docker-container:
-    image: springboot-docker-container:3.0
+    image: springboot-docker-container:1.0
     networks:
       - another-network
     ports:
@@ -24,8 +34,10 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mysql-standalone
+      - mongodb-standalone
     links:
       - mysql-standalone
+      - mongodb-standalone
 
 networks:
   another-network:

@@ -9,15 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EnableMongoRepositories
+//@EnableMongoRepositories
 public class StudentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentApplication.class, args);
 	}
-	MongoClient mongoClient=new MongoClient("localhost",27017);
-	MongoDatabase mongoDatabase=mongoClient.getDatabase("StudentRecords");
-
-	MongoCollection<Document> collection = mongoDatabase.getCollection("Students");
 
 }
