@@ -25,10 +25,18 @@ public class StudentMongoService {
     public StudentResultDto getStudentAvgResult(String subject,String standard){
 
         MongoCollection<Document> collection=  mongoTemplate.getCollection("Students");
+        System.out.println("???");
+        System.out.println(collection.countDocuments());
+
         AggregateIterable<Document> result =collection.aggregate(Arrays.asList(
                 unwind("$subjects"),
                 match(and(eq("standard", standard), eq("subjects.paperName", subject))),
                 group(eq("standard", "$standard"), avg("AverageMarks", "$subjects.marks"))));
+
+//        AggregateIterable<Document> result =collection.aggregate(Arrays.asList(
+//                unwind("$subjectsList"),
+//                match(and(eq("standard", standard), eq("subjectsList.paperName", subject))),
+//                group(eq("standard", "$standard"), avg("AverageMarks", "subjectsList.marks"))));
 
         if (result.first().isEmpty())
             throw new ResourceNotFound("No record found.Please input the correct values.");
@@ -45,5 +53,12 @@ public class StudentMongoService {
     public List<Student> getAllStudentsFromMongo() {
         List<Student> studentListMongo=studentMongoRepository.findAll();
         return studentListMongo;
+    }
+
+    public Student addNewStudentRecord(Student student) {
+        Student studentObject=student;
+        Student studentSaved=studentMongoRepository.save(studentObject);
+        System.out.println(studentSaved.getStudentName());
+        return studentSaved;
     }
 }

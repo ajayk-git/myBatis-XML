@@ -14,6 +14,11 @@ public class Subjects {
     public String paperName;
     public Double marks;
 
+    public Subjects(String paperName, Double marks) {
+        this.paperName = paperName;
+        this.marks = marks;
+    }
+
     public String getSubjectId() {
         return subjectId;
     }

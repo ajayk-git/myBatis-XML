@@ -12,6 +12,8 @@ services:
       - MYSQL_PASSWORD=test@1234
     ports:
       - 3607:3606
+    volumes:
+      - "./createTable.sql:/docker-entrypoint-initdb.d/1.sql"
 
 
   mongodb-standalone:
@@ -24,7 +26,7 @@ services:
 
 
   springboot-docker-container:
-    image: springboot-docker-container:1.0
+    image: springboot-docker-container:29.0
     networks:
       - another-network
     ports:

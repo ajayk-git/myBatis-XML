@@ -17,13 +17,22 @@ public class Student {
 
     @Autowired
     Subjects subjectObject;
+
     @Id
     public String studentId;
     public String studentName;
     public List<Subjects> subjects;
+    String standard;
 
+    public Student( String studentId, String studentName, List<Subjects> subjects, String standard) {
+        this.subjectObject = subjectObject;
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.subjects = subjects;
+        this.standard = standard;
+    }
 
-
+    public Student(){}
     public String getStudentId() {
         return studentId;
     }
@@ -38,6 +47,14 @@ public class Student {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public Subjects getSubjectObject() {
+        return subjectObject;
+    }
+
+    public void setSubjectObject(Subjects subjectObject) {
+        this.subjectObject = subjectObject;
     }
 
     public String getStandard() {
@@ -55,8 +72,5 @@ public class Student {
     public void setSubjects(List<Subjects> subjects) {
         this.subjects = subjects;
     }
-
-    String standard;
-    List<Subjects> subjectsList;
 
 }

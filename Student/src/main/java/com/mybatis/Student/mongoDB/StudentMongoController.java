@@ -20,6 +20,10 @@ public class StudentMongoController {
     List<Student> getAllStudentsFromMongo(){
         return studentMongoService.getAllStudentsFromMongo();
     }
+    @PostMapping("/add")
+    Student addNewStudentRecord(@RequestBody  Student student){
+        return studentMongoService.addNewStudentRecord(student);
+    }
     @PostMapping("/")
     StudentResultDto getStudentAvgResult(@RequestBody AverageMarksDTO averageMarksDTO){
 
