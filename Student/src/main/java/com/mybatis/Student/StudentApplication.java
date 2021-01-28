@@ -46,22 +46,6 @@ public class StudentApplication {
 
 		@Override
 		public void run(ApplicationArguments args) throws Exception {
-//
-//			Teacher teacher=new Teacher();
-//			teacher.setDepartmentId(1L);
-//			teacher.setTeacherName("TestName");
-//			teacher.setContactNumber("99999999");
-//			teacher.setLevel("1");
-//			teacherMapper.insertTeacherRecord(teacher);
-//			System.out.println("Teacher "+teacher.getTeacherName()+" added successfully");
-//
-//			User user=new User();
-//			user.setPassword("TestPassword");
-//			user.setUsername("testUser");
-//			user.setRole("ROLE_USER");
-//			userMapper.insertUserRecord(user);
-//			System.out.println(user.getUsername());
-//			System.out.println("User "+user.getUsername()+" added successfully");
 
 			Subjects subject1=new Subjects("English",20D);
 			Subjects subject2=new Subjects("Maths",18D);
@@ -92,14 +76,14 @@ public class StudentApplication {
 			Student studentSaved3=studentMongoRepository.save(student3);
 			System.out.println(studentSaved3);
 
-			Subjects subject7=new Subjects("English",20D);
-			Subjects subject8=new Subjects("Maths",18D);
-			List<Subjects> subjectsList4=new ArrayList();
-			subjectsList4.add(subject7);
-			subjectsList4.add(subject8);
-			Student student4=new Student("801","XXXXXXX",subjectsList4,"8");
-			Student studentSaved4=studentMongoRepository.save(student4);
-			System.out.println(studentSaved4);
+//			Subjects subject7=new Subjects("English",20D);
+//			Subjects subject8=new Subjects("Maths",18D);
+//			List<Subjects> subjectsList4=new ArrayList();
+//			subjectsList4.add(subject7);
+//			subjectsList4.add(subject8);
+//			Student student4=new Student("801","XXXXXXX",subjectsList4,"8");
+//			Student studentSaved4=studentMongoRepository.save(student4);
+//			System.out.println(studentSaved4);
 
 		}
 	}
