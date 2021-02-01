@@ -5,15 +5,16 @@ services:
     image: mysql:latest
     networks:
       - another-network
+    container_name: "mysql-standalone"
+
     environment:
       - MYSQL_ROOT_PASSWORD=igdefault
       - MYSQL_DATABASE=StudentMyBatis
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test@1234
     ports:
-      - 3607:3606
-    volumes:
-      - "./createTable.sql:/docker-entrypoint-initdb.d/1.sql"
+      - 3606:3606
+
 
 
   mongodb-standalone:
@@ -26,7 +27,7 @@ services:
 
 
   springboot-docker-container:
-    image: springboot-docker-container:1.0
+    image: springboot-docker-container:16.0
     networks:
       - another-network
     ports:
